@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import todoData from '../assets/data'; 
+import ListItem from './list_item';
 
 class TodoList extends Component {
-    constructor(props){
-        super(props);
 
-        this.state= {
-            list: todoData
-        };
-    }
     
     render(){
-        const listItem= this.state.list.map((item, index)=>{
-            return <li key={index} className='collection-item'>{item.title}</li>
+
+        const listItem= this.props.list.map((item, index)=>{
+            return <ListItem key={index} title={item.title} delete={()=>{this.props.delete(index)}}/>
         });
         
         return(

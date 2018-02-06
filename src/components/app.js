@@ -1,12 +1,52 @@
-import React from 'react';
-import TodoList from './todo_list'; 
-import 'materialize-css/dist/css/materialize.min.css'; 
+import 'materialize-css/dist/css/materialize.min.css';
+import React, { Component } from 'react';
+import todoData from '../assets/data';
+import AddForm from './add_form';
+import TodoList from './todo_list';
 
-const App = () => (
-    <div className='container'>
-        <h1 className="center-align">To Do App</h1>
-        <TodoList />
-    </div>
-);
+
+
+class App extends Component {
+    constructor(props){
+        super(props);
+
+        this.state={
+            list: todoData
+        };
+
+        this.addItem= this.addItem.bind(this); 
+        this.deleteItem= this.deleteItem.bind(this); 
+    }
+
+    addItem(item){
+        console.log(item); 
+        this.setState({
+            list: [item, ...this.state.list]
+        });
+    }
+
+    deleteItem(index){
+        const newList= this.state.list.slice();
+
+        newList.splice(index, 1);
+
+        this.setState({
+            list:newList
+        })
+
+    }
+    
+    render(){
+        return(
+            <div className='container'>
+                <h1 className="center-align">To Do App</h1>
+                <AddForm add={this.addItem}/>
+                <TodoList delete={this.deleteItem}list={this.state.list}/>
+            </div>
+        )
+    }
+}
+
+
 
 export default App;
