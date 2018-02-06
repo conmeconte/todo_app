@@ -7,7 +7,7 @@ class TodoList extends Component {
     render(){
 
         const listItem= this.props.list.map((item, index)=>{
-            return <ListItem key={index} title={item.title}/>
+            return <ListItem key={index} title={item.title} delete={()=>{this.props.delete(index)}}/>
         });
         
         return(

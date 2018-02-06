@@ -9,7 +9,9 @@ export default props =>{
                     {props.title}
                 </div>
                 <div className="col s6 right-align">
-                    <button className="btn btn-floating red">Del</button>
+                    <button onClick={props.delete} className="btn btn-floating red">
+                        <i className="material-icons">delete</i>
+                    </button>
                 </div>
             </div>
 
